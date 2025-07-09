@@ -8,11 +8,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <style type="text/tailwindcss">
         @theme {
-            --color-primary: #3b82f6;
-            --color-secondary: #10b981;
-            --color-accent: #8b5cf6;
-            --color-dark: #0f172a;
-            --color-light: #f8fafc;
+            --color-primary: #2196f3;
+            --color-secondary: #42a5f5;
+            --color-accent: #1976d2;
+            --color-dark: #0d47a1;
+            --color-light: #e3f2fd;
+            --color-sail: #bbdefb;
+            --color-malibu: #90caf9;
+            --color-picton-blue: #64b5f6;
+            --color-mariner: #1976d2;
+            --color-denim: #1565c0;
         }
         
         /* Custom scrollbar */
@@ -21,22 +26,56 @@
         }
         
         ::-webkit-scrollbar-track {
-            background: #1e293b;
+            background: #0d47a1;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+            background: linear-gradient(to bottom, #2196f3, #42a5f5);
             border-radius: 6px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #2563eb, #7c3aed);
+            background: linear-gradient(to bottom, #1976d2, #64b5f6);
+        }
+        
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(227, 242, 253, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(227, 242, 253, 0.18);
+        }
+        
+        /* Gradient text animation */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-text-animate {
+            background: linear-gradient(90deg, #2196f3, #42a5f5, #64b5f6, #90caf9, #2196f3);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 5s ease infinite;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
         }
     </style>
 </head>
 <body class="bg-dark text-light overflow-x-hidden">
     <!-- Navbar (same as homepage) -->
-    <nav class="fixed top-0 w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
@@ -75,30 +114,30 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-dark via-slate-900 to-dark overflow-hidden">
+    <section class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-dark via-denim to-dark overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl animate-pulse"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-secondary/20 rounded-full filter blur-3xl animate-pulse delay-2000"></div>
+            <div class="absolute top-20 left-10 w-72 h-72 bg-sail/30 rounded-full filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-picton-blue/30 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-malibu/30 rounded-full filter blur-3xl animate-pulse delay-2000"></div>
         </div>
         
         <div class="container mx-auto px-4 py-32 relative z-10">
             <div class="text-center">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent hero-title">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text-animate hero-title">
                     あなたの可能性を向上させる
                 </h1>
                 <p class="text-xl md:text-2xl text-light/80 mb-8 hero-subtitle">
                     インタラクティブなセミナーと変革的な自己開発を通じて
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center hero-buttons">
-                    <a href="#seminar" class="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white rounded-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center">
+                    <a href="#seminar" class="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 inline-flex items-center group">
                         今すぐセミナーに申し込む
-                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                     </a>
-                    <a href="#layanan" class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-lg font-semibold hover:bg-white/20 transition-all duration-300 border border-white/20">
+                    <a href="#layanan" class="px-8 py-4 glass text-white rounded-lg font-semibold hover:bg-sail/20 transition-all duration-300">
                         詳しく見る
                     </a>
                 </div>
@@ -106,7 +145,7 @@
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 float-animation">
             <svg class="w-6 h-6 text-light/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
             </svg>
@@ -114,7 +153,7 @@
     </section>
 
     <!-- Layanan Kami Section -->
-    <section id="layanan" class="py-20 bg-gradient-to-b from-dark to-slate-900">
+    <section id="layanan" class="py-20 bg-gradient-to-b from-dark to-mariner">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent section-title">
@@ -127,7 +166,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div class="service-card bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-primary/50 transition-all duration-300 hover:transform hover:scale-105">
+                <div class="service-card bg-sail/5 backdrop-blur-sm rounded-xl p-8 border border-sail/20 hover:border-primary/50 transition-all duration-300 hover:transform hover:scale-105 hover:bg-sail/10">
                     <div class="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
@@ -160,7 +199,7 @@
                 </div>
                 
                 <!-- Service 2 -->
-                <div class="service-card bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-secondary/50 transition-all duration-300 hover:transform hover:scale-105">
+                <div class="service-card bg-malibu/5 backdrop-blur-sm rounded-xl p-8 border border-malibu/20 hover:border-secondary/50 transition-all duration-300 hover:transform hover:scale-105 hover:bg-malibu/10">
                     <div class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary/50 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
@@ -193,7 +232,7 @@
                 </div>
                 
                 <!-- Service 3 -->
-                <div class="service-card bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-accent/50 transition-all duration-300 hover:transform hover:scale-105">
+                <div class="service-card bg-picton-blue/5 backdrop-blur-sm rounded-xl p-8 border border-picton-blue/20 hover:border-accent/50 transition-all duration-300 hover:transform hover:scale-105 hover:bg-picton-blue/10">
                     <div class="w-16 h-16 bg-gradient-to-br from-accent to-accent/50 rounded-lg flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -229,7 +268,7 @@
     </section>
 
     <!-- Seminar Terbaru Section -->
-    <section id="seminar" class="py-20 bg-gradient-to-b from-slate-900 to-dark">
+    <section id="seminar" class="py-20 bg-gradient-to-b from-mariner to-dark">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent section-title">
@@ -241,7 +280,7 @@
             </div>
             
             <div class="overflow-x-auto">
-                <table class="w-full bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden">
+                <table class="w-full glass rounded-xl overflow-hidden">
                     <thead class="bg-white/10">
                         <tr>
                             <th class="px-6 py-4 text-left text-light font-semibold">日付</th>
@@ -299,7 +338,7 @@
     </section>
 
     <!-- Testimonial Section -->
-    <section class="py-20 bg-gradient-to-b from-dark to-slate-900">
+    <section class="py-20 bg-gradient-to-b from-dark to-denim">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent section-title">
@@ -311,7 +350,7 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="testimonial-card bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div class="testimonial-card glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
                     <div class="flex items-center mb-4">
                         <img src="https://via.placeholder.com/60" alt="Client" class="w-12 h-12 rounded-full mr-4">
                         <div>
@@ -341,7 +380,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div class="testimonial-card glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
                     <div class="flex items-center mb-4">
                         <img src="https://via.placeholder.com/60" alt="Client" class="w-12 h-12 rounded-full mr-4">
                         <div>
@@ -371,7 +410,7 @@
                     </div>
                 </div>
                 
-                <div class="testimonial-card bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div class="testimonial-card glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
                     <div class="flex items-center mb-4">
                         <img src="https://via.placeholder.com/60" alt="Client" class="w-12 h-12 rounded-full mr-4">
                         <div>
@@ -405,7 +444,7 @@
     </section>
 
     <!-- Why Choose Us Section -->
-    <section class="py-20 bg-gradient-to-b from-slate-900 to-dark">
+    <section class="py-20 bg-gradient-to-b from-denim to-dark">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
@@ -464,7 +503,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-primary to-accent">
+    <section class="py-20 bg-gradient-to-r from-mariner via-primary to-secondary">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
                 あなたの変革の旅を始める準備はできていますか？
@@ -582,9 +621,11 @@
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-dark/95');
+                navbar.style.background = 'rgba(13, 71, 161, 0.95)';
+                navbar.style.backdropFilter = 'blur(16px)';
             } else {
-                navbar.classList.remove('bg-dark/95');
+                navbar.style.background = '';
+                navbar.style.backdropFilter = '';
             }
         });
 

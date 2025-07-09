@@ -8,11 +8,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
     <style type="text/tailwindcss">
         @theme {
-            --color-primary: #3b82f6;
-            --color-secondary: #10b981;
-            --color-accent: #8b5cf6;
-            --color-dark: #0f172a;
-            --color-light: #f8fafc;
+            --color-primary: #2196f3;
+            --color-secondary: #42a5f5;
+            --color-accent: #1976d2;
+            --color-dark: #0d47a1;
+            --color-light: #e3f2fd;
+            --color-sail: #bbdefb;
+            --color-malibu: #90caf9;
+            --color-picton-blue: #64b5f6;
+            --color-mariner: #1976d2;
+            --color-denim: #1565c0;
         }
         
         /* Custom scrollbar */
@@ -21,16 +26,16 @@
         }
         
         ::-webkit-scrollbar-track {
-            background: #1e293b;
+            background: #0d47a1;
         }
         
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+            background: linear-gradient(to bottom, #2196f3, #42a5f5);
             border-radius: 6px;
         }
         
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to bottom, #2563eb, #7c3aed);
+            background: linear-gradient(to bottom, #1976d2, #64b5f6);
         }
 
         /* Timeline styles */
@@ -41,7 +46,7 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+            background: linear-gradient(to bottom, #2196f3, #42a5f5);
         }
 
         .timeline-dot {
@@ -50,15 +55,49 @@
             top: 24px;
             width: 16px;
             height: 16px;
-            background: #3b82f6;
+            background: #2196f3;
             border-radius: 50%;
-            border: 4px solid #0f172a;
+            border: 4px solid #0d47a1;
+        }
+        
+        /* Glass morphism effect */
+        .glass {
+            background: rgba(227, 242, 253, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(227, 242, 253, 0.18);
+        }
+        
+        /* Gradient text animation */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .gradient-text-animate {
+            background: linear-gradient(90deg, #2196f3, #42a5f5, #64b5f6, #90caf9, #2196f3);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 5s ease infinite;
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
         }
     </style>
 </head>
 <body class="bg-dark text-light overflow-x-hidden">
     <!-- Navbar (same as homepage) -->
-    <nav class="fixed top-0 w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300" id="navbar">
+    <nav class="fixed top-0 w-full z-50 glass transition-all duration-300" id="navbar">
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-2">
@@ -97,15 +136,15 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[50vh] flex items-center justify-center bg-gradient-to-br from-dark via-slate-900 to-dark overflow-hidden">
+    <section class="relative min-h-[50vh] flex items-center justify-center bg-gradient-to-br from-dark via-denim to-dark overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0">
-            <div class="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full filter blur-3xl animate-pulse"></div>
-            <div class="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+            <div class="absolute top-20 left-10 w-72 h-72 bg-sail/30 rounded-full filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-picton-blue/30 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
         </div>
         
         <div class="container mx-auto px-4 py-32 relative z-10 text-center">
-            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent hero-title">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 gradient-text-animate hero-title">
                 会社概要
             </h1>
             <p class="text-xl text-light/80 max-w-2xl mx-auto hero-subtitle">
@@ -115,7 +154,7 @@
     </section>
 
     <!-- Company Introduction Section -->
-    <section class="py-20 bg-gradient-to-b from-dark to-slate-900">
+    <section class="py-20 bg-gradient-to-b from-dark to-mariner">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
@@ -152,12 +191,12 @@
     </section>
 
     <!-- Vision, Mission, Values Section -->
-    <section class="py-20 bg-gradient-to-b from-slate-900 to-dark">
+    <section class="py-20 bg-gradient-to-b from-mariner to-dark">
         <div class="container mx-auto px-4">
             <div class="max-w-6xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Vision -->
-                    <div class="vision-card bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-primary/50 transition-all duration-300">
+                    <div class="vision-card glass rounded-xl p-8 hover:scale-105 transition-all duration-300">
                         <div class="w-16 h-16 bg-gradient-to-br from-primary to-primary/50 rounded-lg flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
@@ -171,7 +210,7 @@
                     </div>
 
                     <!-- Mission -->
-                    <div class="vision-card bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-secondary/50 transition-all duration-300">
+                    <div class="vision-card glass rounded-xl p-8 hover:scale-105 transition-all duration-300">
                         <div class="w-16 h-16 bg-gradient-to-br from-secondary to-secondary/50 rounded-lg flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
@@ -184,7 +223,7 @@
                     </div>
 
                     <!-- Values -->
-                    <div class="vision-card bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-accent/50 transition-all duration-300">
+                    <div class="vision-card glass rounded-xl p-8 hover:scale-105 transition-all duration-300">
                         <div class="w-16 h-16 bg-gradient-to-br from-accent to-accent/50 rounded-lg flex items-center justify-center mb-6">
                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
@@ -224,7 +263,7 @@
     </section>
 
     <!-- Company Journey Timeline -->
-    <section class="py-20 bg-gradient-to-b from-dark to-slate-900">
+    <section class="py-20 bg-gradient-to-b from-dark to-denim">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent section-title">
@@ -240,7 +279,7 @@
                     <!-- Timeline Item 1 -->
                     <div class="timeline-item relative pl-8">
                         <div class="timeline-dot"></div>
-                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-primary/50 transition-all duration-300">
+                        <div class="glass rounded-xl p-6 hover:bg-sail/10 transition-all duration-300">
                             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                                 <h3 class="text-2xl font-bold text-light">Test Company Siteの始まり</h3>
                                 <span class="text-primary font-semibold">2010</span>
@@ -254,7 +293,7 @@
                     <!-- Timeline Item 2 -->
                     <div class="timeline-item relative pl-8">
                         <div class="timeline-dot"></div>
-                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-secondary/50 transition-all duration-300">
+                        <div class="glass rounded-xl p-6 hover:bg-malibu/10 transition-all duration-300">
                             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                                 <h3 class="text-2xl font-bold text-light">地域展開</h3>
                                 <span class="text-secondary font-semibold">2015</span>
@@ -268,7 +307,7 @@
                     <!-- Timeline Item 3 -->
                     <div class="timeline-item relative pl-8">
                         <div class="timeline-dot"></div>
-                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-accent/50 transition-all duration-300">
+                        <div class="glass rounded-xl p-6 hover:bg-picton-blue/10 transition-all duration-300">
                             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                                 <h3 class="text-2xl font-bold text-light">デジタル革新</h3>
                                 <span class="text-accent font-semibold">2020</span>
@@ -282,7 +321,7 @@
                     <!-- Timeline Item 4 -->
                     <div class="timeline-item relative pl-8">
                         <div class="timeline-dot"></div>
-                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-primary/50 transition-all duration-300">
+                        <div class="glass rounded-xl p-6 hover:bg-sail/10 transition-all duration-300">
                             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                                 <h3 class="text-2xl font-bold text-light">マイルストーン達成</h3>
                                 <span class="text-primary font-semibold">2023</span>
@@ -296,7 +335,7 @@
                     <!-- Timeline Item 5 -->
                     <div class="timeline-item relative pl-8">
                         <div class="timeline-dot"></div>
-                        <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-secondary/50 transition-all duration-300">
+                        <div class="glass rounded-xl p-6 hover:bg-malibu/10 transition-all duration-300">
                             <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
                                 <h3 class="text-2xl font-bold text-light">未来のビジョン</h3>
                                 <span class="text-secondary font-semibold">2025</span>
@@ -312,7 +351,7 @@
     </section>
 
     <!-- Our Team Section -->
-    <section class="py-20 bg-gradient-to-b from-slate-900 to-dark">
+    <section class="py-20 bg-gradient-to-b from-denim to-dark">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent section-title">
@@ -424,7 +463,7 @@
     </section>
 
     <!-- Achievements & Awards Section -->
-    <section class="py-20 bg-gradient-to-b from-dark to-slate-900">
+    <section class="py-20 bg-gradient-to-b from-dark to-mariner">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent section-title">
@@ -437,7 +476,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                 <!-- Award 1 -->
-                <div class="award-card bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-primary/50 transition-all duration-300 text-center">
+                <div class="award-card glass rounded-xl p-6 hover:scale-105 hover:bg-sail/10 transition-all duration-300 text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-primary to-primary/50 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
@@ -448,7 +487,7 @@
                 </div>
 
                 <!-- Award 2 -->
-                <div class="award-card bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-secondary/50 transition-all duration-300 text-center">
+                <div class="award-card glass rounded-xl p-6 hover:scale-105 hover:bg-malibu/10 transition-all duration-300 text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-secondary to-secondary/50 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm4.707 3.707a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L8.414 9H10a3 3 0 013 3v1a1 1 0 102 0v-1a5 5 0 00-5-5H8.414l1.293-1.293z" clip-rule="evenodd"></path>
@@ -459,7 +498,7 @@
                 </div>
 
                 <!-- Award 3 -->
-                <div class="award-card bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-accent/50 transition-all duration-300 text-center">
+                <div class="award-card glass rounded-xl p-6 hover:scale-105 hover:bg-picton-blue/10 transition-all duration-300 text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-accent to-accent/50 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"></path>
@@ -470,7 +509,7 @@
                 </div>
 
                 <!-- Award 4 -->
-                <div class="award-card bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-primary/50 transition-all duration-300 text-center">
+                <div class="award-card glass rounded-xl p-6 hover:scale-105 hover:bg-sail/10 transition-all duration-300 text-center">
                     <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path>
@@ -485,22 +524,22 @@
             <div class="mt-16">
                 <h3 class="text-2xl font-bold text-center text-light mb-8">主要企業から信頼されています</h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-                    <div class="partner-logo bg-white/5 rounded-lg p-6 flex items-center justify-center h-24 hover:bg-white/10 transition-colors">
+                    <div class="partner-logo glass rounded-lg p-6 flex items-center justify-center h-24 hover:bg-sail/10 transition-all duration-300">
                         <span class="text-light/60 font-bold">パートナーロゴ</span>
                     </div>
-                    <div class="partner-logo bg-white/5 rounded-lg p-6 flex items-center justify-center h-24 hover:bg-white/10 transition-colors">
+                    <div class="partner-logo glass rounded-lg p-6 flex items-center justify-center h-24 hover:bg-sail/10 transition-all duration-300">
                         <span class="text-light/60 font-bold">パートナーロゴ</span>
                     </div>
-                    <div class="partner-logo bg-white/5 rounded-lg p-6 flex items-center justify-center h-24 hover:bg-white/10 transition-colors">
+                    <div class="partner-logo glass rounded-lg p-6 flex items-center justify-center h-24 hover:bg-sail/10 transition-all duration-300">
                         <span class="text-light/60 font-bold">パートナーロゴ</span>
                     </div>
-                    <div class="partner-logo bg-white/5 rounded-lg p-6 flex items-center justify-center h-24 hover:bg-white/10 transition-colors">
+                    <div class="partner-logo glass rounded-lg p-6 flex items-center justify-center h-24 hover:bg-sail/10 transition-all duration-300">
                         <span class="text-light/60 font-bold">パートナーロゴ</span>
                     </div>
-                    <div class="partner-logo bg-white/5 rounded-lg p-6 flex items-center justify-center h-24 hover:bg-white/10 transition-colors">
+                    <div class="partner-logo glass rounded-lg p-6 flex items-center justify-center h-24 hover:bg-sail/10 transition-all duration-300">
                         <span class="text-light/60 font-bold">パートナーロゴ</span>
                     </div>
-                    <div class="partner-logo bg-white/5 rounded-lg p-6 flex items-center justify-center h-24 hover:bg-white/10 transition-colors">
+                    <div class="partner-logo glass rounded-lg p-6 flex items-center justify-center h-24 hover:bg-sail/10 transition-all duration-300">
                         <span class="text-light/60 font-bold">パートナーロゴ</span>
                     </div>
                 </div>
@@ -509,7 +548,7 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-primary to-accent">
+    <section class="py-20 bg-gradient-to-r from-mariner via-primary to-secondary">
         <div class="container mx-auto px-4 text-center">
             <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
                 私たちと一緒に参加しましょう
@@ -611,9 +650,11 @@
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-dark/95');
+                navbar.style.background = 'rgba(13, 71, 161, 0.95)';
+                navbar.style.backdropFilter = 'blur(16px)';
             } else {
-                navbar.classList.remove('bg-dark/95');
+                navbar.style.background = '';
+                navbar.style.backdropFilter = '';
             }
         });
 
